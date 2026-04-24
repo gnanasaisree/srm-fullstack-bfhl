@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BFHL Hierarchy Analyzer</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <p class="eyebrow">SRM Full Stack Engineering Challenge</p>
+        <h1>Hierarchy Analyzer</h1>
+        <p class="hero-copy">
+          Paste your node edges, send them to the backend, and inspect the
+          generated trees, cycles, duplicates, and summary in one place.
+        </p>
+      </header>
+
+      <main class="layout">
+        <section class="panel panel-form">
+          <div class="panel-header">
+            <h2>Request Builder</h2>
+            <button id="sample-button" class="secondary-button" type="button">
+              Load Sample
+            </button>
+          </div>
+
+          <label class="field">
+            <span>API endpoint</span>
+            <input
+              id="api-url"
+              type="url"
+              value="/bfhl"
+              spellcheck="false"
+              autocomplete="off"
+            />
+          </label>
+
+          <label class="field">
+            <span>Input edges</span>
+            <textarea
+              id="edge-input"
+              rows="10"
+              spellcheck="false"
+            >A->B
+A->C
+B->D
+A->B
+X=>Y
+G->H
+H->G</textarea>
+          </label>
+
+          <p class="input-hint">
+            Enter one edge per line. The app converts it to
+            <code>{ "data": [...] }</code> before sending the request.
+          </p>
+
+          <div class="actions">
+            <button id="submit-button" class="primary-button" type="button">
+              Analyze Hierarchy
+            </button>
+            <span id="status-text" class="status-text">Ready</span>
+          </div>
+        </section>
+
+        <section class="panel panel-results">
+          <div class="panel-header">
+            <h2>Response Overview</h2>
+          </div>
+
+          <div id="summary-cards" class="summary-grid">
+            <article class="summary-card">
+              <p class="summary-label">Trees</p>
+              <strong id="trees-count">-</strong>
+            </article>
+            <article class="summary-card">
+              <p class="summary-label">Cycles</p>
+              <strong id="cycles-count">-</strong>
+            </article>
+            <article class="summary-card">
+              <p class="summary-label">Largest Root</p>
+              <strong id="largest-root">-</strong>
+            </article>
+          </div>
+
+          <div class="result-blocks">
+            <section class="result-block">
+              <h3>Hierarchies</h3>
+              <pre id="hierarchies-output">Run an analysis to view results.</pre>
+            </section>
+
+            <section class="result-block split-block">
+              <div>
+                <h3>Invalid Entries</h3>
+                <pre id="invalid-output">[]</pre>
+              </div>
+              <div>
+                <h3>Duplicate Edges</h3>
+                <pre id="duplicate-output">[]</pre>
+              </div>
+            </section>
+
+            <section class="result-block">
+              <h3>Raw JSON</h3>
+              <pre id="raw-output">{}</pre>
+            </section>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
